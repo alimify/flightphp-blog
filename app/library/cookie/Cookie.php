@@ -12,7 +12,7 @@ class Cookie {
         return $_COOKIE[$name]??null;
     }
 
-    static function remove($name){
+    function remove($name){
         setcookie($name, '', time() - 3600, '/');
     }
 
