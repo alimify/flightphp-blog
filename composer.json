@@ -1,0 +1,8 @@
+{
+    "require": {
+        "flightphp/core": "^3.13",
+        "flightphp/active-record": "^0.4.9",
+        "intervention/image": "^3.9",
+        "flightphp/runway": "^1.1"
+    }
+}
