@@ -44,11 +44,9 @@ $app->set('image.compression', true); // to enable it, make sure the system have
  * as you shouldn't be pushing sensitive information to a public or private
  * repository.
  */
+
+ $databaseConfig = require('database.php');
+
 return [
-	'database' => [
-		'host' => 'localhost',
-		'dbname' => 'upwork_gyuner_blog',
-		'user' => 'root',
-		'password' => ''
-	],
+	...$databaseConfig
 ];
