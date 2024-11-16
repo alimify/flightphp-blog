@@ -21,7 +21,12 @@ $app = Flight::app();
  * P.S. When you require a php file and that file returns an array, the array
  * will be returned by the require statement where you can assign it to a var.
  */
-$config = require('config.php');
+require('config.php');
+
+$setup = require('setup.php');
+$database = require('database.php');
+
+$config = array_merge($setup,$database);
 
 // Whip out the ol' router and we'll pass that to the routes file
 $router = $app->router();
