@@ -45,6 +45,11 @@ $app->set('image.compression', true); // to enable it, make sure the system have
  * repository.
  */
 
-return [
-
+ return [
+	'database' => [
+		'host' => DB_HOST,
+		'dbname' => DB_NAME,
+		'user' => DB_USER,
+		'password' => DB_PASSWORD
+	],
 ];
