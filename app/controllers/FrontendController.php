@@ -27,7 +27,7 @@ class FrontendController extends BaseController
 
 	public function category($slug)
 	{
-        $category = (new CategoryRecord())->eq('aliasName', $slug)->find();
+        $category = (new CategoryRecord())->eq('aliasName', $slug)->findOrFail();
         $articles = new ArticleRecord();
         $articles = $articles
         ->order('id desc')
@@ -44,7 +44,8 @@ class FrontendController extends BaseController
 
     public function view_blog($category_slug,$id)
     {
-        $article = (new ArticleRecord())->find($id);
+        $article = (new ArticleRecord())->findOrFail($id);
+        if(empty($article->id)) return $this->response()->status(404);
 
         return $this->render('frontend/blog/view', [
             'article' => $article

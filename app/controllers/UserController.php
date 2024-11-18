@@ -30,7 +30,7 @@ class UserController extends BaseController
         $email = $this->request()->data->email;
         $password = $this->request()->data->password;
 
-        $existing_user = (new UserRecord())->eq('email',$email)->find();
+        $existing_user = (new UserRecord())->eq('email',$email)->findOrFail();
 
         if($existing_user->id){
             return $this->redirect('/admin/users/create');
@@ -47,7 +47,7 @@ class UserController extends BaseController
 
     public function edit($id)
     {
-        $user = (new UserRecord())->find($id);
+        $user = (new UserRecord())->findOrFail($id);
 
         return $this->render('admin/users/form', [
             'user' => $user
@@ -56,7 +56,7 @@ class UserController extends BaseController
 
     public function update($id)
     {
-        $user = (new UserRecord())->find($id);
+        $user = (new UserRecord())->findOrFail($id);
         if($user){
             $user->name = $this->request()->data->name;
             $user->email = $this->request()->data->email;
@@ -73,7 +73,7 @@ class UserController extends BaseController
 
     public function destroy($id)
     {
-        $user = (new UserRecord())->find($id);
+        $user = (new UserRecord())->findOrFail($id);
         $user->delete();
         return $this->redirect($this->getUrl('admin.users.index'));
     }

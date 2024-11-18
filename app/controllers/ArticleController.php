@@ -44,16 +44,18 @@ class ArticleController extends BaseController
 
 	public function edit($id)
 	{
-        $article = (new ArticleRecord())->find($id);
+        $article = (new ArticleRecord())->findOrFail($id);
 
-        return $this->render('admin/articles/form', [
+		return $this->render('admin/articles/form', [
             'article' => $article
         ]);
 	}
 
 	public function update($id)
 	{
-        $article = (new ArticleRecord())->find($id);
+        $article = (new ArticleRecord())->findOrFail($id);
+        if(empty($article->id)) return $this->response()->status(404);
+
 		$request = $this->request();
 		$data = $request->data;
 		$article->aliasId = $data->aliasId;
@@ -73,7 +75,7 @@ class ArticleController extends BaseController
 
 	public function destroy($id)
 	{
-        $article = (new ArticleRecord())->find($id);
+        $article = (new ArticleRecord())->findOrFail($id);
         $article->delete();
         return $this->redirect($this->getUrl('admin.articles.index'));
 	}

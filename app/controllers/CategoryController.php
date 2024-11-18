@@ -40,7 +40,7 @@ class CategoryController extends BaseController
 
     public function edit($id)
     {
-        $category = (new CategoryRecord())->find($id);
+        $category = (new CategoryRecord())->findOrFail($id);
         return $this->render('admin/category/form', [
             'category' => $category
         ]);
@@ -48,7 +48,7 @@ class CategoryController extends BaseController
 
     public function update($id)
     {
-        $category = (new CategoryRecord())->find($id);
+        $category = (new CategoryRecord())->findOrFail($id);
         $data = $this->request()->data;
         $slug = string_to_slug($data->name);
         $category->displayName = $data->name;
@@ -62,7 +62,7 @@ class CategoryController extends BaseController
 
     public function destroy($id)
     {
-        $category = (new CategoryRecord())->find($id);
+        $category = (new CategoryRecord())->findOrFail($id);
         $category->delete();
         return $this->redirect($this->getUrl('admin.category.index'));
     }
