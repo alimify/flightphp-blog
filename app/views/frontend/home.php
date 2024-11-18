@@ -1,7 +1,7 @@
 <?php 
 $data = [
-    'title' => 'Home',
-    'title_prefix' => 'Blog'
+    'title' => 'МБАЛ "Д-р Атанас Дафовски" АД-Кърджали',
+    'title_prefix' => ''
 ];
 
 Flight::render('frontend/partials/top', $data); 

@@ -3,8 +3,8 @@
 use app\records\MediaRecord;
 
 $top_article = [
-    'title' => $article->name??'View',
-    'title_prefix' => '- Blog'
+    'title' => $article->name??'МБАЛ "Д-р Атанас Дафовски" АД-Кърджали',
+    'title_prefix' => ''
 ];
 
 Flight::render('frontend/partials/top', $top_article); 

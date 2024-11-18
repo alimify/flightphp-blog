@@ -1,7 +1,7 @@
 <?php 
 $data = [
-    'title' => $category->displayName??'ОТДЕЛЕНИЯ',
-    'title_prefix' => ' - Blog'
+    'title' => $category->displayName??'МБАЛ "Д-р Атанас Дафовски" АД-Кърджали',
+    'title_prefix' => ''
 ];
 
 Flight::render('frontend/partials/top', $data); 
