@@ -15,8 +15,6 @@ class FrontendController extends BaseController
         $articles = new ArticleRecord();
         $articles = $articles
         ->order('id desc')
-        ->join('categories','articles.aliasId=categories.id')
-        ->select("articles.*, categories.displayName,categories.aliasName")
         ->limit(30)
         ->findAll();
 
@@ -25,15 +23,13 @@ class FrontendController extends BaseController
         ]);
 	}
 
-	public function category($slug)
+	public function category($alias)
 	{
-        $category = (new CategoryRecord())->eq('aliasName', $slug)->findOrFail();
+        $category = (new CategoryRecord())->eq('aliasName', $alias)->findOrFail();
         $articles = new ArticleRecord();
         $articles = $articles
         ->order('id desc')
-        ->join('categories','articles.aliasId=categories.id')
-        ->select("articles.*, categories.displayName,categories.aliasName")
-        ->eq('articles.aliasId', $category->id)
+        ->eq('alias', $category->aliasName)
         ->findAll();
 
         return $this->render('frontend/blog/category',[
@@ -42,9 +38,9 @@ class FrontendController extends BaseController
         ]);
 	}
 
-    public function view_blog($category_slug,$id)
+    public function view_blog(?string $alias,$aliasId)
     {
-        $article = (new ArticleRecord())->findOrFail($id);
+        $article = (new ArticleRecord())->eq('alias', $alias)->eq('aliasId',$aliasId)->findOrFail();
         if(empty($article->id)) return $this->response()->status(404);
 
         return $this->render('frontend/blog/view', [

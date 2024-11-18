@@ -28,8 +28,8 @@ Flight::render('frontend/partials/top', $data);
                                 <tr class="bg-white  border-b-[2px] border-[#1F4D85] w-full">
                                     <th class="px-0 py-0 border-r-[2px] border-[#1F4D85]">
                                         <a href='<?php echo route('view_blog',[
-                                            'category_slug' => $v->aliasName,
-                                            'id' => $v->id
+                                            'alias' => $v->alias,
+                                            'aliasId' => $v->aliasId
                                         ]); ?>'>
                                             <div class="px-6 py-3 text-[#1F4D85] hover:bg-[#1F4D85] hover:text-[#fff] flex justify-between hover-icon text-left">
                                                 <?php echo $v->name; ?>

@@ -12,7 +12,7 @@ class ArticleController extends BaseController
 	public function index()
 	{
 		$articles = (new ArticleRecord())->select("articles.*,categories.displayName as category")
-		->join('categories','articles.aliasId = categories.id')
+		->join('categories','articles.alias = categories.aliasName')
 		->orderBy('articles.id desc')->findAll();
 
         return $this->render('admin/articles/index', [

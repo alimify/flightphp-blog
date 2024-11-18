@@ -52,18 +52,23 @@ $categories = (new CategoryRecord())->order('id desc')->findAll();
 
                   <div>
                     <label for="category">Alias</label>
-                    <select name="aliasId" class="form-control">
+                    <select name="alias" class="form-control">
                       <!-- <option value="">Select</option> -->
                       <?php foreach ($categories as $category) {
                         $cat_name = $category->displayName;
-                        $cat_id = $category->id;
+                        $aliasName = $category->aliasName;
                         $selected_cat = "";
-                        if($cat_id == ($article->aliasId??null)){
+                        if($aliasName == ($article->alias??null)){
                           $selected_cat = "selected";
                         }
                         echo "<option value='$cat_id' $selected_cat>$cat_name</option>";
                       }?>
                     </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="aliasId">AliasId</label>
+                    <input type="text" value="<?php echo $article->aliasId??null; ?>" name="aliasId" class="form-control" id="aliasId" placeholder="Enter">
                   </div>
 
                   <div class="form-group">
