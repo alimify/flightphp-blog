@@ -32,7 +32,7 @@ class ArticleController extends BaseController
 		$data = $request->data;
 		$article->aliasId = $data->aliasId;
 		$alias = (new CategoryRecord())->find($data->aliasId);
-		$article->alias = $alias->slug;
+		$article->alias = $alias->aliasName;
 		$article->name = $data->name;
 		$article->{"`desc`"} = $data->description;
 		$article->pic = uploadFile($request->files['thumbnail']);
@@ -60,7 +60,7 @@ class ArticleController extends BaseController
 		$data = $request->data;
 		$article->aliasId = $data->aliasId;
 		$alias = (new CategoryRecord())->find($data->aliasId);
-		$article->alias = $alias->slug;
+		$article->alias = $alias->aliasName;
 		$article->name = $data->name;
 		$article->{"`desc`"} = $data->description;
 		if(!empty($request->files['thumbnail']['full_path'])){
