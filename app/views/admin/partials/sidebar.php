@@ -79,7 +79,7 @@
               foreach ($categories as $cat) { ?>
                 <li class="nav-item">
                 <a href="<?php echo route('admin.category.articles',[
-                  'alias' => $cat->slug
+                  'alias' => $cat->aliasName
                 ]); ?>" class="nav-link">
                   <i class="nav-icon fas fa-list-alt"></i>
                   <p>
