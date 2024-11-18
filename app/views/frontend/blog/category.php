@@ -1,6 +1,6 @@
 <?php 
 $data = [
-    'title' => $category->title??'Articles',
+    'title' => $category->displayName??'Articles',
     'title_prefix' => 'Blog'
 ];
 
@@ -11,7 +11,7 @@ Flight::render('frontend/partials/top', $data);
 <section class="bg-[#fff] pt-12">
     <center>
         <span class="bg-[#1F4D85] inline-flex items-center justify-center px-2 py-2 mr-3 text-base font-medium text-center text-white rounded-[5px] bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
-           <?php echo $category->title??'Articles'; ?>
+           <?php echo $category->displayName??'Articles'; ?>
         </span>  
     </center>
 </section>
@@ -28,7 +28,7 @@ Flight::render('frontend/partials/top', $data);
                                 <tr class="bg-white  border-b-[2px] border-[#1F4D85] w-full">
                                     <th class="px-0 py-0 border-r-[2px] border-[#1F4D85]">
                                         <a href='<?php echo route('view_blog',[
-                                            'category_slug' => $v->slug,
+                                            'category_slug' => $v->aliasName,
                                             'id' => $v->id
                                         ]); ?>'>
                                             <div class="px-6 py-3 text-[#1F4D85] hover:bg-[#1F4D85] hover:text-[#fff] flex justify-between hover-icon text-left">

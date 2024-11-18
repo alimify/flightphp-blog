@@ -83,7 +83,7 @@
                 ]); ?>" class="nav-link">
                   <i class="nav-icon fas fa-list-alt"></i>
                   <p>
-                    <?php echo $cat->title; ?>
+                    <?php echo $cat->displayName; ?>
                   </p>
                 </a>
               </li>

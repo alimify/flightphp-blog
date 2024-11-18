@@ -16,7 +16,8 @@ class FrontendController extends BaseController
         $articles = $articles
         ->order('id desc')
         ->join('categories','articles.aliasId=categories.id')
-        ->select("articles.*, categories.title,categories.slug")
+        ->select("articles.*, categories.displayName,categories.aliasName")
+        ->limit(30)
         ->findAll();
 
         return $this->render('frontend/home',[
@@ -26,12 +27,13 @@ class FrontendController extends BaseController
 
 	public function category($slug)
 	{
-        $category = (new CategoryRecord())->eq('slug', $slug)->find();
+        $category = (new CategoryRecord())->eq('aliasName', $slug)->find();
         $articles = new ArticleRecord();
         $articles = $articles
         ->order('id desc')
         ->join('categories','articles.aliasId=categories.id')
-        ->select("articles.*, categories.title,categories.slug")
+        ->select("articles.*, categories.displayName,categories.aliasName")
+        ->eq('articles.aliasId', $category->id)
         ->findAll();
 
         return $this->render('frontend/blog/category',[

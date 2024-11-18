@@ -44,9 +44,8 @@
                   <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Title</th>
-                    <th>Serial</th>
-                    <th>Status</th>
+                    <th>Name</th>
+                    <th>Alias</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -54,20 +53,9 @@
                   <?php foreach ($categories as $category) { ?>
                     <tr>
                       <td><?php echo $category->id; ?></td>
-                      <td> <?php echo $category->title; ?> </td>
+                      <td> <?php echo $category->displayName; ?> </td>
                       <td>
-                        <?php echo $category->serial; ?>
-                      </td>
-                      <td>
-
-                        <?php
-                          if($category->active== 1){
-                            echo "Active";
-                          }else {
-                            echo "InActive";
-                          }
-                        ?>
-          
+                        <?php echo $category->aliasName; ?>
                       </td>
                       <td>
                       <a href="<?php echo route('admin.category.edit',[

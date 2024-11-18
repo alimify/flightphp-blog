@@ -41,7 +41,7 @@ class UserController extends BaseController
             $user->password = password_hash($password, PASSWORD_BCRYPT);
             $user->insert();
 
-            return $this->redirect('/admin/users');
+            return $this->redirect($this->getUrl('admin.users.index'));
         }
     }
 
@@ -66,13 +66,15 @@ class UserController extends BaseController
             }
             $user->update();
         }
-        return $this->redirect('/admin/users/edit/' . $id);
+        return $this->redirect($this->getUrl('admin.users.edit',[
+            'id' => $id
+        ]));
     }
 
     public function destroy($id)
     {
         $user = (new UserRecord())->find($id);
         $user->delete();
-        return $this->redirect('/admin/users');
+        return $this->redirect($this->getUrl('admin.users.index'));
     }
 }

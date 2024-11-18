@@ -28,16 +28,14 @@ class CategoryController extends BaseController
         $slug = string_to_slug($data->name);
         $existing = (new CategoryRecord())->eq('slug',$slug)->find();
         if($existing->id){
-            return $this->redirect('/admin/category/create');
+            return $this->redirect($this->getUrl('admin.category.create'));
         }
         $category = new CategoryRecord();
-        $category->title = $data->name;
-        $category->slug = $slug;
-        $category->serial = $data->serial;
-        $category->active = $data->status;
+        $category->displayName = $data->name;
+        $category->aliasName = $slug;
         $category->insert();
 
-        return $this->redirect('/admin/category');
+        return $this->redirect($this->getUrl('admin.category.index'));
     }
 
     public function edit($id)
@@ -53,20 +51,20 @@ class CategoryController extends BaseController
         $category = (new CategoryRecord())->find($id);
         $data = $this->request()->data;
         $slug = string_to_slug($data->name);
-        $category->title = $data->name;
-        $category->slug = $slug;
-        $category->serial = $data->serial;
-        $category->active = $data->status;
+        $category->displayName = $data->name;
+        $category->aliasName = $slug;
         $category->update();
 
-        return $this->redirect('/admin/category/edit/'. $id);
+        return $this->redirect($this->getUrl('admin.category.edit',[
+            'id' => $id
+        ]));
     }
 
     public function destroy($id)
     {
         $category = (new CategoryRecord())->find($id);
         $category->delete();
-        return $this->redirect('/admin/category');
+        return $this->redirect($this->getUrl('admin.category.index'));
     }
 
     public function articles($alias)

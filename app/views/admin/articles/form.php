@@ -55,7 +55,7 @@ $categories = (new CategoryRecord())->order('id desc')->findAll();
                     <select name="aliasId" class="form-control">
                       <!-- <option value="">Select</option> -->
                       <?php foreach ($categories as $category) {
-                        $cat_name = $category->title;
+                        $cat_name = $category->displayName;
                         $cat_id = $category->id;
                         $selected_cat = "";
                         if($cat_id == ($article->aliasId??null)){

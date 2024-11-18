@@ -50,6 +50,6 @@ class AuthController extends BaseController
     {
         $this->cookie()
              ->clear();
-        return $this->redirect('/admin/login');
+        return $this->redirect($this->getUrl('admin.login'));
     }
 }

@@ -11,7 +11,7 @@ class ArticleController extends BaseController
 
 	public function index()
 	{
-		$articles = (new ArticleRecord())->select("articles.*,categories.title as category")
+		$articles = (new ArticleRecord())->select("articles.*,categories.displayName as category")
 		->join('categories','articles.aliasId = categories.id')
 		->orderBy('articles.id desc')->findAll();
 
@@ -39,7 +39,7 @@ class ArticleController extends BaseController
 		$article->date = date("Y-m-d");
 		$article->insert();
 
-		return $this->redirect("/admin/articles");
+		return $this->redirect($this->getUrl('admin.articles.index'));
 	}
 
 	public function edit($id)
@@ -66,13 +66,15 @@ class ArticleController extends BaseController
 		}
 		$article->update();
 
-		return $this->redirect('/admin/articles/edit/'. $id);
+		return $this->redirect($this->getUrl('admin.articles.edit',[
+			'id' => $id
+		]));
 	}
 
 	public function destroy($id)
 	{
         $article = (new ArticleRecord())->find($id);
         $article->delete();
-        return $this->redirect('/admin/articles');
+        return $this->redirect($this->getUrl('admin.articles.index'));
 	}
 }

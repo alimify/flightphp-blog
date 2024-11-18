@@ -35,19 +35,22 @@ function string_to_slug($string) {
 function article_media_content_filter($article){
     $content = $article->desc;
     preg_match_all('/FILE_(\d+)_FILE/', $content, $matches);
-    $medias = new MediaRecord();
-    $medias = $medias->order('id desc')->in('id',$matches[1])->findAll();
-
-    foreach ($medias as $media) {
-        $fileContent = "";
-        $fileUrl = get_url($media->filepath);
-        if(in_array($media->ext,['png','jpg','jpeg','gif'])){
-            $fileContent = "<img src='". $fileUrl . "' alt=''/>";
-        }else {
-            $filename = $media->name;
-            $fileContent = "<a href='$fileUrl'>$filename</a>";
+    
+    if(count($matches[0]) > 0){
+        $medias = new MediaRecord();
+        $medias = $medias->order('id desc')->in('id',$matches[1])->findAll();
+    
+        foreach ($medias as $media) {
+            $fileContent = "";
+            $fileUrl = get_url($media->filepath);
+            if(in_array($media->ext,['png','jpg','jpeg','gif'])){
+                $fileContent = "<img src='". $fileUrl . "' alt=''/>";
+            }else {
+                $filename = $media->name;
+                $fileContent = "<a href='$fileUrl'>$filename</a>";
+            }
+            $content = str_replace("FILE_". $media->id. "_FILE", $fileContent, $content);
         }
-        $content = str_replace("FILE_". $media->id. "_FILE", $fileContent, $content);
     }
 
     return $content;

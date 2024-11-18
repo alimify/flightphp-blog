@@ -44,24 +44,7 @@ if(!empty($category)){
 
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" value="<?php echo $category->title??null; ?>" name="name" class="form-control" id="name" placeholder="Enter Name">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="serial">Serial</label>
-                    <input type="number" value="<?php echo ($category->serial??0); ?>" name="serial" class="form-control" id="serial" placeholder="Enter Serial">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="status">Status</label>
-                    <select name="status" class="form-control">
-                        <option value="1" <?php ($category->active??0)== 1 ? 'selected':'' ?>>
-                            Active
-                        </option>
-                        <option value="0" <?php ($category->active??0)== 0 ? 'selected':'' ?>>
-                            InActive
-                        </option>
-                    </select>
+                    <input type="text" value="<?php echo $category->displayName??null; ?>" name="name" class="form-control" id="name" placeholder="Enter Name">
                   </div>
 
                 </div>

@@ -23,10 +23,7 @@ $app = Flight::app();
  */
 require('config.php');
 
-$setup = require('setup.php');
-$database = require('database.php');
-
-$config = array_merge($setup,$database);
+$config = require('setup.php');
 
 // Whip out the ol' router and we'll pass that to the routes file
 $router = $app->router();
