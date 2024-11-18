@@ -83,7 +83,7 @@ Flight::render('frontend/partials/top', $data);
 <section class="bg-[#fff] pt-12">
     <center>
         <span class="bg-[#1F4D85] inline-flex items-center justify-center px-2 py-2 mr-3 text-base font-medium text-center text-white rounded-[5px] bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
-           Articles
+        ОТДЕЛЕНИЯ
         </span>  
     </center>
 </section>
