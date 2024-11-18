@@ -27,7 +27,7 @@ $categories = (new CategoryRecord())->order('id desc')->findAll();
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Article</h1>
+                    <h1>Add Article</h1>
                 </div>
                 <div class="col-sm-6">
                     <!-- <ol class="breadcrumb float-sm-right">
@@ -52,13 +52,17 @@ $categories = (new CategoryRecord())->order('id desc')->findAll();
 
                   <div>
                     <label for="category">Alias</label>
-                    <select name="alias" class="form-control" id="alias">
+                    <select style="pointer-events: none;" readonly name="alias" class="form-control" id="alias">
                       <!-- <option value="">Select</option> -->
                       <?php foreach ($categories as $category) {
                         $cat_name = $category->displayName;
                         $aliasName = $category->aliasName;
+                        $matchAlias = $article->alias??null;
+                        if(!$matchAlias){
+                          $matchAlias = $_GET['alias']??'';
+                        }
                         $selected_cat = "";
-                        if($aliasName == ($article->alias??null)){
+                        if($aliasName == $matchAlias){
                           $selected_cat = "selected";
                         }
                         echo "<option value='$aliasName' $selected_cat>$cat_name</option>";

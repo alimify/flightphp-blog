@@ -29,11 +29,14 @@ class UserController extends BaseController
         $name = $this->request()->data->name;
         $email = $this->request()->data->email;
         $password = $this->request()->data->password;
+        $confirm_password = $this->request()->confirm_password;
 
-        $existing_user = (new UserRecord())->eq('email',$email)->findOrFail();
 
-        if($existing_user->id){
-            return $this->redirect('/admin/users/create');
+        $existing_user = (new UserRecord())->eq('email',$email)->find();
+
+        if($existing_user->id || $password != $confirm_password){
+            $_SESSION['error'] = 'Email already exist!';
+            return $this->redirect("/admin/users/create?err=err&name=$name&email=$email&password=$password&confirm_password=$confirm_password");
         }else {
             $user = new UserRecord();
             $user->name = $name;
@@ -61,7 +64,15 @@ class UserController extends BaseController
             $user->name = $this->request()->data->name;
             $user->email = $this->request()->data->email;
             $password = $this->request()->data->password;
+            $confirm_password = $this->request()->data->confirm_password;
+
             if($password){
+                if($password != $confirm_password){
+                    return $this->redirect($this->getUrl('admin.users.edit',[
+                        'id' => $id
+                    ])."?err=err");
+                }
+
                 $user->password = password_hash($password, PASSWORD_BCRYPT);
             }
             $user->update();

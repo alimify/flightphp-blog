@@ -6,7 +6,7 @@
           <use href="#icon-imageUpload"></use>
         </svg>
         <p class="small my-2">Drag &amp; Drop</p>
-        <input id="upload_file_drop" data-post-name="file_drop" data-post-url="<?php echo route('admin.media.upload_files'); ?>" class="position-absolute invisible" type="file" multiple />
+        <input accept=".jpg, .jpeg, .png, .gif, .pdf, .doc, .docx, .tiff, .tif, .rtf, .rar, .zip" id="upload_file_drop" data-post-name="file_drop" data-post-url="<?php echo route('admin.media.upload_files'); ?>" class="position-absolute invisible" type="file" multiple />
         <label class="btn btn-upload mb-3" for="upload_file_drop">Choose file(s)</label>
         <!-- <div class="upload_gallery d-flex flex-wrap justify-content-center gap-3 mb-0"></div> -->
         <div id="progress-report" style="display: none;">

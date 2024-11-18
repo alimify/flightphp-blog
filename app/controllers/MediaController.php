@@ -44,15 +44,14 @@ class MediaController extends BaseController
                 continue;
             }
 
-            // $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-            // if (!in_array($fileType, $allowedTypes)) {
-            //     $messages[] = "Invalid file type for $fileName. Only JPEG, PNG, and GIF are allowed.";
-            //     continue;
-            // }
 
             $pathInfo = pathinfo($fileName);
             $fileExtension = $pathInfo['extension'];
-
+            $allowedTypes = ['jpg','png','gif','pdf','doc,','docx','tiff','tif','rtf','doc','rar','zip'];
+            if (!in_array($fileExtension, $allowedTypes)) {
+                $messages[] = "Invalid file type for $fileName. Only JPEG, PNG, and GIF are allowed.";
+                continue;
+            }
 
             $maxSize = 50 * 1024 * 1024;
             if ($fileSize > $maxSize) {
@@ -98,8 +97,7 @@ class MediaController extends BaseController
         $messages[] = 'No files uploaded.';
     }
         return Flight::json([
-            'success' => true,
-            'some' => extension_loaded('gd'),
+            'success' => $uploaded,
             'message' => implode(' ', $messages)
         ]);
     }

@@ -32,7 +32,7 @@ class CategoryController extends BaseController
         }
         $category = new CategoryRecord();
         $category->displayName = $data->name;
-        $category->aliasName = $slug;
+        $category->aliasName = $slug?$slug:string_to_slug($data->name);
         $category->insert();
 
         return $this->redirect($this->getUrl('admin.category.index'));
@@ -68,8 +68,10 @@ class CategoryController extends BaseController
 
     public function articles($alias)
     {
+        $category = (new CategoryRecord())->eq('aliasName', $alias)->findOrFail();
 		$articles = (new ArticleRecord())->order('id desc')->eq('alias', $alias)->findAll();
         return $this->render('admin/category/view', [
+            'category' => $category,
             'articles' => $articles
         ]);
     }

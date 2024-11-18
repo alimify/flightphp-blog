@@ -38,7 +38,9 @@ class ArticleController extends BaseController
 		$article->date = date("Y-m-d");
 		$article->insert();
 
-		return $this->redirect($this->getUrl('admin.articles.index'));
+		return $this->redirect($this->getUrl('admin.category.articles',[
+			'alias' => $data->alias
+		]));
 	}
 
 	public function edit($id)
@@ -74,8 +76,11 @@ class ArticleController extends BaseController
 	public function destroy($id)
 	{
         $article = (new ArticleRecord())->findOrFail($id);
+		$alias = $article->alias;
         $article->delete();
-        return $this->redirect($this->getUrl('admin.articles.index'));
+        return $this->redirect($this->getUrl('admin.category.articles',[
+			'alias' => $alias
+		]));
 	}
 
 	public function getAliasId($alias)

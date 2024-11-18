@@ -13,7 +13,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Category Articles</h1>
+            <h1><?php echo $category->displayName; ?></h1>
           </div>
           <div class="col-sm-6">
             <!-- <ol class="breadcrumb float-sm-right">
@@ -36,7 +36,7 @@
                 <h3 class="card-title">All the articles of this category are here</h3>
               </div>
               <div>
-                <a class="m-2 btn btn-success btn-md pull-right" href="<?php echo route('admin.category.create'); ?>?category_id=1">Create</a>
+                <a class="m-2 btn btn-success btn-md pull-right" href="<?php echo route('admin.articles.create'); ?>?alias=<?php echo $category->aliasName; ?>">Create</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -55,7 +55,7 @@
                   <?php foreach ($articles as $article) { ?>
                     <tr>
                       <td><?php echo $article->id; ?></td>
-                      <td><img src="<?php echo get_url($article->pic); ?>" alt="" height="50" width="50"/> </td>
+                      <td><img src="<?php echo $article->pic?get_url($article->pic):asset('/assets/images/no-image.jpg'); ?>" height="50" width="50" alt="" /> </td>
                       <td> <?php echo $article->name; ?> </td>
                       <td> <?php echo $article->date; ?> </td>
                       <td>

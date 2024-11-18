@@ -9,8 +9,8 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <!-- <div class="image">
+      <!--<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
           <img src="<?php echo asset('/assets/images/user-profile-14024728.png'); ?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
@@ -19,11 +19,11 @@
               use app\records\CategoryRecord;
               echo $_COOKIE['name']??''; ?>
           </a>
-        </div> -->
-      </div>
+        </div> 
+      </div>-->
 
       <!-- SidebarSearch Form -->
-      <div class="form-inline">
+      <div class="form-inline mt-2">
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
@@ -52,14 +52,6 @@
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Users
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?php echo route('admin.articles.index'); ?>" class="nav-link">
-              <i class="nav-icon fas fa-newspaper"></i>
-              <p>
-                Articles
               </p>
             </a>
           </li>
