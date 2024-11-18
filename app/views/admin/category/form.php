@@ -44,7 +44,12 @@ if(!empty($category)){
 
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" value="<?php echo $category->displayName??null; ?>" name="name" class="form-control" id="name" placeholder="Enter Name">
+                    <input type="text" value="<?php echo $category->displayName??null; ?>" name="name" class="form-control" id="name" placeholder="Enter Name" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="name">Alias</label>
+                    <input type="text" value="<?php echo $category->aliasName??null; ?>" name="aliasName" class="form-control" id="aliasName" placeholder="Enter Alias" required>
                   </div>
 
                 </div>
@@ -68,7 +73,22 @@ if(!empty($category)){
 <?php Flight::render('admin/partials/bottom'); ?>
 <!-- Page specific script -->
 <script>
+function stringToSlug(str) {
+    return str
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-')
+        .replace(/^-+/, '')
+        .replace(/-+$/, '');
+}
 
+const eleName = document.getElementById('name'),
+      eleAlias = document.getElementById('aliasName')
+eleName.addEventListener('keyup', function(event){
+  eleAlias.value = stringToSlug(event.target.value)
+})
 </script>
 </body>
 </html>

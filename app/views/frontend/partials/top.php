@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php echo $title; ?> <?php echo $title_prefix; ?></title>
         <!-- <link rel="stylesheet" href="/output.css"> -->
-        <link rel="stylesheet" href="/style.css"> 
+        <!-- <link rel="stylesheet" href="/style.css">  -->
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="icon" type="image/x-icon" href="<?php echo get_url('/assets/frontend/Logo/logo.svg'); ?>">
         <!-- <script src="https://cdn.tailwindcss.com"></script> -->

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2024 at 11:51 PM
+-- Generation Time: Nov 18, 2024 at 09:29 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -37,6 +37,14 @@ CREATE TABLE `articles` (
   `date` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `articles`
+--
+
+INSERT INTO `articles` (`id`, `alias`, `aliasId`, `name`, `pic`, `desc`, `date`) VALUES
+(1, 'php', 1, 'Lorem ipsum title', 'uploads/673ad51ad5c04waiting-for-this.jpg', '<p>something&nbsp;FILE_1_FILE</p>', '2024-11-18'),
+(6, 'javascript', 3, 'Abdul Alim 1', 'uploads/673ad707eaec9waiting-for-this.jpg', '<p>withoutslash</p>', '2024-11-18');
+
 -- --------------------------------------------------------
 
 --
@@ -45,12 +53,18 @@ CREATE TABLE `articles` (
 
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `serial` int(11) NOT NULL DEFAULT 0,
-  `active` int(11) NOT NULL DEFAULT 1,
-  `date` date DEFAULT NULL
+  `displayName` varchar(255) NOT NULL,
+  `aliasName` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `displayName`, `aliasName`) VALUES
+(1, 'PHP', 'php'),
+(3, 'Javascript', 'javascript'),
+(4, 'abdul alim', 'abdul-alim');
 
 -- --------------------------------------------------------
 
@@ -65,6 +79,13 @@ CREATE TABLE `medias` (
   `ext` varchar(255) DEFAULT NULL,
   `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `medias`
+--
+
+INSERT INTO `medias` (`id`, `name`, `filepath`, `ext`, `date`) VALUES
+(1, 'audio-voice-record.png', 'uploads/673ad5101f6acaudio-voice-record.png', 'png', NULL);
 
 -- --------------------------------------------------------
 
@@ -123,19 +144,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `medias`
 --
 ALTER TABLE `medias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

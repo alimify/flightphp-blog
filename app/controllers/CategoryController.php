@@ -25,8 +25,8 @@ class CategoryController extends BaseController
     public function store()
     {
         $data = $this->request()->data;
-        $slug = string_to_slug($data->name);
-        $existing = (new CategoryRecord())->eq('slug',$slug)->find();
+        $slug = $data->aliasName;
+        $existing = (new CategoryRecord())->eq('aliasName',$slug)->find();
         if($existing->id){
             return $this->redirect($this->getUrl('admin.category.create'));
         }
@@ -50,9 +50,8 @@ class CategoryController extends BaseController
     {
         $category = (new CategoryRecord())->findOrFail($id);
         $data = $this->request()->data;
-        $slug = string_to_slug($data->name);
         $category->displayName = $data->name;
-        $category->aliasName = $slug;
+        $category->aliasName = $data->aliasName;
         $category->update();
 
         return $this->redirect($this->getUrl('admin.category.edit',[
