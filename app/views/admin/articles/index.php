@@ -46,6 +46,7 @@
                     <th>ID</th>
                     <th></th>
                     <th>Alias</th>
+                    <th>AliasId</th>
                     <th>Name</th>
                     <th>Date</th>
                     <th>Action</th>
@@ -58,6 +59,7 @@
                       <td><?php echo $article->id; ?></td>
                       <td><img src="<?php echo get_url($article->pic); ?>" height="50" width="50" alt="" /> </td>
                       <td><?php echo $article->category; ?> </td>
+                      <td><?php echo $article->aliasId; ?></td>
                       <td> <?php echo $article->name; ?> </td>
                       <td> <?php echo $article->date; ?> </td>
                       <td>
