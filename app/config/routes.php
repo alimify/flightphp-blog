@@ -17,10 +17,6 @@ use flight\net\Router;
  * @var Engine $app
  */
 
-// Frontend
-$router->get('/', FrontendController::class . '->index')->setAlias('home');
-$router->get('/@alias',FrontendController::class.'->category')->setAlias('category');
-$router->get('/@alias/view/@aliasId',FrontendController::class.'->view_blog')->setAlias('view_blog');
 
 // Admin
 $router->group('/admin', function(Router $router){
@@ -38,6 +34,7 @@ $router->group('/admin', function(Router $router){
     $router->get('/logout',AuthController::class.'->logout')->setAlias('admin.logout');
 
     // dashboard
+    $router->get('/', DashboardController::class.'->index')->setAlias('admin.dashboard.index');
     $router->get('/dashboard', DashboardController::class.'->index')->setAlias('admin.dashboard.index');
 
     // users
@@ -71,3 +68,8 @@ $router->group('/admin', function(Router $router){
     $router->post('/media/upload_files', MediaController::class.'->uploadFiles')->setAlias('admin.media.upload_files');
 
 },[AdminMiddleware::class]);
+
+// Frontend
+$router->get('/', FrontendController::class . '->index')->setAlias('home');
+$router->get('/@alias',FrontendController::class.'->category')->setAlias('category');
+$router->get('/@alias/view/@aliasId',FrontendController::class.'->view_blog')->setAlias('view_blog');

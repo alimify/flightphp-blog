@@ -61,9 +61,9 @@
         </div>
       </form>
 
-      <p class="mb-0">
+      <!--<p class="mb-0">
         <a href="<?php echo get_url('/admin/register'); ?>" class="text-center">Register a new membership</a>
-      </p>
+      </p>-->
     </div>
     <!-- /.login-card-body -->
   </div>
