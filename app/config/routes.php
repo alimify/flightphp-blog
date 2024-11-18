@@ -55,7 +55,8 @@ $router->group('/admin', function(Router $router){
     $router->get('/articles/edit/@id', ArticleController::class. '->edit')->setAlias('admin.articles.edit');
     $router->post('/articles/edit/@id', ArticleController::class. '->update')->setAlias('admin.articles.update');
     $router->get('/articles/delete/@id',ArticleController::class.'->destroy')->setAlias('admin.articles.delete');
-
+    $router->get('/articles/getAliasId/@alias',ArticleController::class.'->getAliasId')->setAlias('admin.articles.get_aliasId');
+    
     // category
     $router->get('/category', CategoryController::class.'->index')->setAlias('admin.category.index');
     $router->get('/category/create',CategoryController::class.'->create')->setAlias('admin.category.create');

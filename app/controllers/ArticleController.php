@@ -79,4 +79,18 @@ class ArticleController extends BaseController
         $article->delete();
         return $this->redirect($this->getUrl('admin.articles.index'));
 	}
+
+	public function getAliasId($alias)
+	{
+		$articles = new ArticleRecord();
+        $articles = $articles
+        ->order('id desc')
+        ->eq('alias', $alias)
+		->limit(1)
+		->orderBy('aliasId desc')
+        ->find();
+		return $this->json([
+			'aliasId' => ($articles->aliasId??0)+1
+		]);
+	}
 }

@@ -52,7 +52,7 @@ $categories = (new CategoryRecord())->order('id desc')->findAll();
 
                   <div>
                     <label for="category">Alias</label>
-                    <select name="alias" class="form-control">
+                    <select name="alias" class="form-control" id="alias">
                       <!-- <option value="">Select</option> -->
                       <?php foreach ($categories as $category) {
                         $cat_name = $category->displayName;
@@ -61,14 +61,14 @@ $categories = (new CategoryRecord())->order('id desc')->findAll();
                         if($aliasName == ($article->alias??null)){
                           $selected_cat = "selected";
                         }
-                        echo "<option value='$cat_id' $selected_cat>$cat_name</option>";
+                        echo "<option value='$aliasName' $selected_cat>$cat_name</option>";
                       }?>
                     </select>
                   </div>
 
                   <div class="form-group">
                     <label for="aliasId">AliasId</label>
-                    <input type="text" value="<?php echo $article->aliasId??null; ?>" name="aliasId" class="form-control" id="aliasId" placeholder="Enter">
+                    <input type="text" value="<?php echo $article->aliasId??null; ?>" name="aliasId" class="form-control" id="aliasId" placeholder="Enter" readonly>
                   </div>
 
                   <div class="form-group">
@@ -115,6 +115,29 @@ $categories = (new CategoryRecord())->order('id desc')->findAll();
     $('#summernote').summernote({
       height: 250
     })
+
+
+    $(window).on('load', function() {
+
+      function setAliasId(){
+        const alias = $("#alias").val()
+        fetch(`<?php echo route('admin.articles.get_aliasId',['alias' => '']); ?>/${alias}`).
+        then((response) => response.json()).then((res) => {
+          $("#aliasId").val(res.aliasId)
+        }).catch((error) => {
+          console.log('error media files')
+        })
+      }
+
+      if('<?php echo $actionUri; ?>'.includes('create')){
+        setAliasId()
+      }
+
+      $("#alias").on("change", function(){
+        setAliasId()
+      })
+
+    });
 </script>
 </body>
 </html>
