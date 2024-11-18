@@ -16,10 +16,10 @@
             <h1>Articles</h1>
           </div>
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+            <!-- <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo route('admin.dashboard.index'); ?>">Dashboard</a></li>
               <li class="breadcrumb-item active">Articles</li>
-            </ol>
+            </ol> -->
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -109,7 +109,7 @@
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+      //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
       "order": [[1, 'desc']]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });

@@ -14,7 +14,7 @@ class FrontendController extends BaseController
 	{
         $articles = new ArticleRecord();
         $articles = $articles
-        ->order('id desc')
+        ->order('date desc')
         ->limit(30)
         ->findAll();
 
@@ -28,7 +28,7 @@ class FrontendController extends BaseController
         $category = (new CategoryRecord())->eq('aliasName', $alias)->findOrFail();
         $articles = new ArticleRecord();
         $articles = $articles
-        ->order('id desc')
+        ->order('date desc')
         ->eq('alias', $category->aliasName)
         ->findAll();
 

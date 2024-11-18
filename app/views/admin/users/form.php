@@ -28,10 +28,10 @@ if(!empty($user)){
                 <h1>User</h1>
             </div>
             <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
+                <!-- <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="<?php echo route('admin.dashboard.index'); ?>">Dashboard</a></li>
                 <li class="breadcrumb-item active">User</li>
-                </ol>
+                </ol> -->
             </div>
             </div>
         </div><!-- /.container-fluid -->

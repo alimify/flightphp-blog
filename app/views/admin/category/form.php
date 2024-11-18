@@ -27,10 +27,10 @@ if(!empty($category)){
                     <h1>Category</h1>
                 </div>
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
+                    <!-- <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?php echo route('admin.dashboard.index'); ?>">Dashboard</a></li>
                     <li class="breadcrumb-item active">Category</li>
-                    </ol>
+                    </ol> -->
                 </div>
                 </div>
             </div>
