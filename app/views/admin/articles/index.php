@@ -57,7 +57,7 @@
                   <?php foreach ($articles as $article) { ?>
                     <tr>
                       <td><?php echo $article->id; ?></td>
-                      <td><img src="<?php echo get_url($article->pic); ?>" height="50" width="50" alt="" /> </td>
+                      <td><img src="<?php echo $article->pic?get_url($article->pic):asset('/assets/images/no-image.jpg'); ?>" height="50" width="50" alt="" /> </td>
                       <td><?php echo $article->category; ?> </td>
                       <td><?php echo $article->aliasId; ?></td>
                       <td> <?php echo $article->name; ?> </td>
