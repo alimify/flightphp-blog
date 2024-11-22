@@ -77,7 +77,7 @@ $categories = (new CategoryRecord())->order('id desc')->findAll();
 
                   <div class="form-group">
                     <label for="thumbnail">Thumbnail</label>
-                    <input type="file" name="thumbnail" class="form-control" id="thumbnail" placeholder="Enter Thumbnail" accept="image/*">
+                    <input type="file" name="thumbnail" class="form-control" id="thumbnail" placeholder="Enter Thumbnail" accept=".jpg, .jpeg, .png, .gif">
                     <?php if(!empty($article->pic)){ ?>
                     <img src="<?php echo get_url($article->pic??null); ?>" alt="" width="50" height="50"/>
                     <?php } ?>

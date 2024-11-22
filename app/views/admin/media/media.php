@@ -234,6 +234,18 @@
     xhr.onload = function() {
       if (xhr.status === 200) {
         // Successful upload
+        if(JSON.parse(xhr.response).message){
+          $(document).Toasts('create', {
+            title:'Info',
+            class: 'bg-info',
+            body: JSON.parse(xhr.response).message,
+            autoHide: true,
+            delay: 1000,
+           })
+           setTimeout(function(){
+            $("#toastsContainerTopRight").remove()
+           },5000)
+        }
         loadFiles()
       } else {
         // Failed upload
