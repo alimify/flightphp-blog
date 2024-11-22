@@ -19,7 +19,7 @@ if(!empty($user)){
 ?>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper overflow-hidden">
 
     <section class="content-header">
         <div class="container-fluid">

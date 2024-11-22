@@ -290,16 +290,19 @@
   let deletingFileId = null
   const filesEleForDelete = document.getElementById('files')
   filesEleForDelete.addEventListener('click', function(event){
-     deletingFileId = event.target.getAttribute('data-id')
+    console.log('datafileid', event.target.classList.contains('delete-media-file'))
+    if(event.target.classList.contains('delete-media-file')){
+      deletingFileId = event.target.getAttribute('data-fileid')
     if(deletingFileId){
       $("#file-delete-modal").modal()
+    }
     }
   })
 
   const deleteFileConfirmed = document.getElementById('set_file_delete_url')
   deleteFileConfirmed.addEventListener('click', function(){
-    
-    fetch('<?php echo route('admin.media.delete'); ?>/'+`${deletingFileId}`,{
+
+    fetch('<?php echo route('admin.media.delete',['id' => 'string']); ?>'.replace('string',deletingFileId),{
       method: 'GET'
     }).then((response) => response.json()).then((jsnRes) => {
       $("#file-delete-modal").modal('hide')

@@ -32,12 +32,6 @@
           <div class="col-12">
 
             <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">All the articles are here</h3>
-              </div>
-              <div>
-                <a class="m-2 btn btn-success btn-md pull-right" href="<?php echo route('admin.articles.create'); ?>">Create</a>
-              </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -109,7 +103,15 @@
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+      "buttons": [
+        {
+          text:"Create",
+          className: 'btn btn-success btn-md',
+          action: function(){
+            window.location.href = `<?php echo route('admin.articles.create'); ?>`
+          }
+        }
+      ],
       "order": [[1, 'desc']]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });

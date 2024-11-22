@@ -34,7 +34,7 @@
                 alert('Failed to copy: ' + err);
             });" class="btn btn-success btn-xs">Copy</a>
 
-                    <a href="javascript:void(0)" data-id="<?php echo $file->id; ?>" class="delete-media-file btn btn-danger btn-xs">Delete</a>
+                    <a href="javascript:void(0)" data-fileid="<?php echo $file->id; ?>" class="delete-media-file btn btn-danger btn-xs">Delete</a>
 
                       </td>
                     </tr>
