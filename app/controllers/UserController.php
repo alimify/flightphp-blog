@@ -29,7 +29,7 @@ class UserController extends BaseController
         $name = $this->request()->data->name;
         $email = $this->request()->data->email;
         $password = $this->request()->data->password;
-        $confirm_password = $this->request()->confirm_password;
+        $confirm_password = $this->request()->data->confirm_password;
 
 
         $existing_user = (new UserRecord())->eq('email',$email)->find();

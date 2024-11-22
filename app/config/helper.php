@@ -1,5 +1,6 @@
 <?php
 
+use app\records\ArticleRecord;
 use app\records\MediaRecord;
 use Intervention\Image\ImageManager;
 
@@ -127,4 +128,15 @@ function abort($status){
 </html>
 ';
     exit();
+}
+
+function getMediaAliasId($alias){
+    $articles = new ArticleRecord();
+    $articles = $articles
+    ->order('id desc')
+    ->eq('alias', $alias)
+    ->limit(1)
+    ->orderBy('aliasId desc')
+    ->find();
+    return ($articles->aliasId??0)+1;
 }

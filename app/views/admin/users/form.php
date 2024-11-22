@@ -55,11 +55,11 @@ if(!empty($user)){
                   </div>
                   <div class="form-group">
                     <label for="password">Password</label>
-                    <input value="<?php echo $_GET['password']??''; ?>" required autocomplete="new-password" type="password" name="password" class="form-control" id="password" placeholder="Password">
+                    <input value="<?php echo $_GET['password']??''; ?>" autocomplete="new-password" type="password" name="password" class="form-control" id="password" placeholder="Password">
                   </div>
                   <div class="form-group">
                     <label for="password">Confirm Password</label>
-                    <input value="<?php echo $_GET['confirm_password']??''; ?>" required autocomplete="new-password" type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password">
+                    <input value="<?php echo $_GET['confirm_password']??''; ?>" autocomplete="new-password" type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password">
                     <span id="password_match_err" style="color:red;display:none;">Password must match!</span>
                   </div>
                 </div>

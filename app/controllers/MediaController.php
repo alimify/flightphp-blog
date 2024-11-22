@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\records\CategoryRecord;
 use app\records\MediaRecord;
 use app\records\UserRecord;
 use Flight;
@@ -12,7 +13,17 @@ class MediaController extends BaseController
 
     public function index()
     {
-        $files = (new MediaRecord())->orderBy('id desc')->limit(15)->findAll();
+        $alias = Flight::request()->query->alias;
+        $aliasId = Flight::request()->query->aliasId;
+        if(!$aliasId){
+            $aliasId = getMediaAliasId($alias);
+        }
+        $tag = "$alias"."$aliasId";
+        $files = (new MediaRecord())
+        ->eq('tag',$tag)
+        ->orderBy('id desc')
+        ->limit(10)
+        ->findAll();
 
         return $this->render('admin/media/files',[
             'files' => $files
@@ -23,6 +34,7 @@ class MediaController extends BaseController
     {
         $request = Flight::request();
         $files = $request->files['file_drop'];
+        $tag = $request->data->tag;
         $messages = [];
     // Check if files were uploaded
     if (count($files) > 0) {
@@ -90,6 +102,7 @@ class MediaController extends BaseController
                 $media->name = basename($fileName);
                 $media->filepath = $destination;
                 $media->ext = $fileExtension;
+                $media->tag = $tag;
                 $media->insert();
             }
         }
@@ -101,4 +114,20 @@ class MediaController extends BaseController
             'message' => implode(' ', $messages)
         ]);
     }
+
+    public function destroy($id)
+    {
+        $media = (new MediaRecord())->findOrFail($id);
+
+        if (file_exists($media->filepath)) {
+           unlink($media->filepath);
+        }
+        $media->delete();
+        return Flight::json([
+            'success' => true,
+            'message' => "File deleted"
+        ]);
+    }
+
+
 }

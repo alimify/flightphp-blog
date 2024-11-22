@@ -21,7 +21,7 @@ $categories = (new CategoryRecord())->order('id desc')->findAll();
 
 ?>
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper overflow-hidden">
 
        <section class="content-header">
             <div class="container-fluid">
@@ -70,7 +70,7 @@ $categories = (new CategoryRecord())->order('id desc')->findAll();
                     </select>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group d-none">
                     <label for="aliasId">AliasId</label>
                     <input type="text" value="<?php echo $article->aliasId??null; ?>" name="aliasId" class="form-control" id="aliasId" placeholder="Enter" readonly>
                   </div>
@@ -82,6 +82,12 @@ $categories = (new CategoryRecord())->order('id desc')->findAll();
                     <img src="<?php echo get_url($article->pic??null); ?>" alt="" width="50" height="50"/>
                     <?php } ?>
                   </div>
+
+                  <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="text" value="<?php echo $article->date??date('Y-m-d'); ?>" name="date" class="form-control" id="datepicker"  data-target="#timepicker">
+                  </div>
+
 
                   <div class="form-group">
                     <label for="description">Desscription</label>
@@ -115,9 +121,12 @@ $categories = (new CategoryRecord())->order('id desc')->findAll();
 <!-- Page specific script -->
 <link rel="stylesheet" href="<?php echo asset('/assets/css/summernote-bs4.min.css'); ?>">
 <script src="<?php echo asset('/assets/js/summernote-bs4.min.js'); ?>"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+
 <script>
     $('#summernote').summernote({
-      height: 250
+      height: 500
     })
 
 
@@ -140,6 +149,13 @@ $categories = (new CategoryRecord())->order('id desc')->findAll();
       $("#alias").on("change", function(){
         setAliasId()
       })
+
+      $( function() {
+        $( "#datepicker" ).datepicker({
+          dateFormat: "yy-mm-dd",
+          defaultDate: new Date()
+        });
+      } )
 
     });
 </script>

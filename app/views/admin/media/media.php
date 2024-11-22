@@ -25,6 +25,26 @@
     </svg>
   </div>
   <div class="container" id="files"></div>
+
+  <div class="modal fade" id="file-delete-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Are you sure to delete ?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body text-center">
+              <a href="javascript:void(0)" id="set_file_delete_url" class="btn btn-danger btn-sm">Confirm</a>
+              <a href="javascript:void(0)" class="btn btn-success btn-sm" aria-label="Close" data-dismiss="modal">Cacnel</a>
+            </div>
+          </div>
+        </div>
+ </div>
+
+
+
 </div>
 
 
@@ -183,7 +203,11 @@
     const name = dataRefs.input.getAttribute('data-post-name');
     if (!name) return;
 
+    const alias = document.getElementById('alias').value
+    const aliasId = document.getElementById('aliasId').value
+
     const formData = new FormData();
+    formData.append('tag',`${alias+aliasId}`)
     dataRefs.files.forEach((file) => {
       formData.append(`${name}[]`, file);
     })
@@ -250,14 +274,44 @@
   const loadFiles = () => {
     let filesEle = document.getElementById('files') 
     filesEle.innerHTML = ''
+    const alias = document.getElementById('alias').value
+    const aliasId = document.getElementById('aliasId').value
 
-    fetch('<?php echo route('admin.media.files'); ?>').then((response) => response.text()).then((html) => {
+    fetch('<?php echo route('admin.media.files'); ?>?alias='+`${alias}&aliasId=${aliasId}`).then((response) => response.text()).then((html) => {
       filesEle.innerHTML = html
     }).catch((error) => {
       console.log('error media files')
     })
   }
   loadFiles();
+
+
+  // deleting file
+  let deletingFileId = null
+  const filesEleForDelete = document.getElementById('files')
+  filesEleForDelete.addEventListener('click', function(event){
+     deletingFileId = event.target.getAttribute('data-id')
+    if(deletingFileId){
+      $("#file-delete-modal").modal()
+    }
+  })
+
+  const deleteFileConfirmed = document.getElementById('set_file_delete_url')
+  deleteFileConfirmed.addEventListener('click', function(){
+    
+    fetch('<?php echo route('admin.media.delete'); ?>/'+`${deletingFileId}`,{
+      method: 'GET'
+    }).then((response) => response.json()).then((jsnRes) => {
+      $("#file-delete-modal").modal('hide')
+      if(jsnRes.success){
+        loadFiles()
+      }
+    }).catch((error) => {
+      console.log('error media file delete')
+      $("#file-delete-modal").modal('hide')
+    })
+
+  })
 
 })();
 

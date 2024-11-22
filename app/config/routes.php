@@ -66,6 +66,8 @@ $router->group('/admin', function(Router $router){
     // medias
     $router->get('/media/files', MediaController::class.'->index')->setAlias('admin.media.files');
     $router->post('/media/upload_files', MediaController::class.'->uploadFiles')->setAlias('admin.media.upload_files');
+    $router->get('/media/delete/@id',MediaController::class.'->destroy')->setAlias('admin.media.delete');
+
 
 },[AdminMiddleware::class]);
 

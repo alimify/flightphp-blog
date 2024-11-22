@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2024 at 12:56 AM
+-- Generation Time: Nov 22, 2024 at 11:13 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -57,6 +57,7 @@ CREATE TABLE `categories` (
 
 CREATE TABLE `medias` (
   `id` int(11) NOT NULL,
+  `tag` varchar(255) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `filepath` varchar(255) NOT NULL,
   `ext` varchar(255) DEFAULT NULL,
@@ -138,7 +139,7 @@ ALTER TABLE `medias`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

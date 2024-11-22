@@ -33,6 +33,7 @@ class ArticleController extends BaseController
 		$article->aliasId = $data->aliasId;
 		$article->alias = $data->alias;
 		$article->name = $data->name;
+		$article->date = $data->date;
 		$article->{"`desc`"} = $data->description;
 		$article->pic = uploadFile($request->files['thumbnail']);
 		$article->date = date("Y-m-d");
@@ -62,6 +63,7 @@ class ArticleController extends BaseController
 		$article->aliasId = $data->aliasId;
 		$article->alias = $data->alias;
 		$article->name = $data->name;
+		$article->date = $data->date;
 		$article->{"`desc`"} = $data->description;
 		if(!empty($request->files['thumbnail']['full_path'])){
 			$article->pic = uploadFile($request->files['thumbnail']);
@@ -77,6 +79,9 @@ class ArticleController extends BaseController
 	{
         $article = (new ArticleRecord())->findOrFail($id);
 		$alias = $article->alias;
+		if (file_exists($article->pic)) {
+			unlink($article->pic);
+		 }
         $article->delete();
         return $this->redirect($this->getUrl('admin.category.articles',[
 			'alias' => $alias

@@ -63,11 +63,14 @@
                       ]); ?>">
                           <i class="fas fa-edit"></i>
                       </a>
-                      <a class="text-danger mt-2" href="<?php echo route('admin.category.delete',[
-                        'id' => $category->id
-                      ]); ?>">
+                      <a href="javascript:void(0)" class="text-danger mt-2 delete_it" data-toggle="modal" data-target="#modal-default"
+                        data-url="<?php echo route('admin.category.delete',[
+                          'id' => $category->id
+                        ]); ?>"
+                      >
                           <i class="fas fa-trash"></i>
                       </a>
+
                       </td>
                     </tr>
                   <?php } ?>
@@ -86,6 +89,24 @@
     </section>
     <!-- /.content -->
   </div>
+
+  <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Are you sure to delete ?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body text-center">
+              <a href="" id="set_delete_url" class="btn btn-danger btn-sm">Confirm</a>
+              <a href="javascript:void(0)" class="btn btn-success btn-sm" aria-label="Close" data-dismiss="modal">Cacnel</a>
+            </div>
+          </div>
+        </div>
+ </div>
+
   <!-- /.content-wrapper -->
   <?php Flight::render('admin/partials/footer'); ?>
 
@@ -106,7 +127,16 @@
       //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
       "order": [[1, 'desc']]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+
+    $(".delete_it").on('click', function(){
+      $("#set_delete_url").attr('href',this.attributes['data-url'].nodeValue)
+    })
+
+    
   });
+
+
 </script>
 </body>
 </html>
